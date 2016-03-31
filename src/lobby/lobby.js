@@ -38,6 +38,23 @@ var LobbyLayer = cc.Layer.extend({
         table_tap.x = size.width / 2;
         table_tap.y = size.height / 2 + 100;
         this.addChild(table_tap);
+
+        var animFrames = [];
+        for(var i = 0 ; i < 3; i ++){
+            var frameName = "img/index/start-"+(i+1)+".png";
+            console.log(frameName);
+            var spriteFrame = cc.spriteFrameCache.getSpriteFrame(frameName);
+            console.log(spriteFrame);
+
+            animFrames.push(spriteFrame);
+        }
+        var animation= new cc.Animation(animFrames,1);
+
+        var action = new cc.Animate(animation);
+        console.log(animFrames,action);
+        table_tap.runAction(cc.repeatForever(action));
+
+
     },
     initImageScrollView: function () {
         

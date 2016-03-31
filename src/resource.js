@@ -10,8 +10,7 @@ var res = {
     bg_lobby_default:   baseDir + "index/bg-lobby-default.png",
     bg_lobby_light  :   baseDir + "index/bg-lobby-light.png",
 
-    table_index_plist     :   baseDir + "index.plist",
-    table_index_png       :   baseDir + "index.png"
+    table_index_plist     :   baseDir + "index.plist"
 };
 
 var g_resources = [];
