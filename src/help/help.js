@@ -2,11 +2,12 @@
  * Created by lixd on 16/3/31.
  */
 var HelpLayer = cc.Layer.extend({
+    _pageView:null,
     ctor: function () {
         this._super();
-        this.initHelpImage();
+        this.initHelpPageView();
     },
-    initHelpImage: function () {
+    initHelpPageView: function () {
         var pageView = new ccui.PageView();
 
         var size = cc.winSize;
@@ -36,14 +37,41 @@ var HelpLayer = cc.Layer.extend({
             text.y = pageView.height / 2 + 300;
             layout.addChild(text);
 
+            var button = new ccui.Button();
+
+            button.loadTextures(res.help_close_png,res.help_close_png,res.help_close_png,'');
+
+            button.x = pageView.x * 2 - 55;
+            button.y = pageView.y * 2 - 55;
+
+            button.addTouchEventListener(this.closeEvent,this);
+            layout.addChild(button);
+
             pageView.addPage(layout);
 
         }
 
         pageView.addEventListener(this.pageViewEvent,this);
+        this._pageView = pageView;
         this.addChild(pageView);
-
         return true;
+    },
+    closeEvent: function (sender,type) {
+        switch (type){
+            case ccui.Widget.TOUCH_BEGAN:
+                cc.log('TOUCH_BEGAN');
+                break;
+            case ccui.Widget.TOUCH_MOVED:
+                cc.log('TOUCH_MOVED');
+                break;
+            case ccui.Widget.TOUCH_CANCELED:
+                cc.log('TOUCH_CANCELED');
+                break;
+            case ccui.Widget.TOUCH_ENDED:
+                cc.log('TOUCH_ENDED');
+                cc.director.runScene(new LobbyScene());
+                break;
+        }
     },
     pageViewEvent: function (sender,type) {
         switch (type){

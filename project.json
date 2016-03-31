@@ -14,6 +14,7 @@
     "jsList" : [
         "src/resource.js",
         "src/app.js",
-        "src/help/help.js"
+        "src/help/help.js",
+        "src/lobby/lobby.js"
     ]
 }
